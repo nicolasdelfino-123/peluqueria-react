@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -39,7 +40,10 @@ function App() {
         </div>
         <hr />
         <div className="boton">
-          <button className="btn btn-primary px-4 py-2 rounded-pill shadow-lg fw-bold">
+          <button
+            className="btn btn-primary px-4 py-2 rounded-pill shadow-lg fw-bold mt-3"
+            onClick={() => navigate("/calendario")}
+          >
             <i className="fa-solid fa-calendar-check me-2"></i> Reservar Turno
           </button>
         </div>

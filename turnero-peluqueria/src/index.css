@@ -8,17 +8,172 @@
   background-repeat: no-repeat;
   margin: 0 auto; /* Centra horizontalmente */
 }
+
 img {
   border-radius: 0 0 20px 20px;
 }
+
 .container-titulo {
   justify-content: center;
   display: flex;
 }
+
 .titulo {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 30px;
   font-weight: 300;
   padding-top: 7px;
+}
+
+.custom-calendar {
+  border-radius: 20px !important; /* Aplica redondeo a toda la tabla */
+  overflow: hidden; /* Evita que los bordes sobresalgan */
+}
+
+.custom-calendar .react-calendar__navigation {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: flex;
+  position: relative;
+  height: 44px;
+}
+
+/* Ocultar completamente botones de año y prevenir su funcionalidad */
+.custom-calendar
+  .react-calendar__navigation
+  button.react-calendar__navigation__arrow.react-calendar__navigation__prev2-button,
+.custom-calendar
+  .react-calendar__navigation
+  button.react-calendar__navigation__arrow.react-calendar__navigation__next2-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  pointer-events: none !important;
+}
+
+/* Deshabilitar cambio de vista (año/mes) en el botón central */
+.custom-calendar
+  .react-calendar__navigation
+  button.react-calendar__navigation__label {
+  pointer-events: none !important;
+  cursor: default !important;
+  background-color: white !important;
+}
+
+/* Posicionar botones de mes en los extremos */
+.custom-calendar
+  .react-calendar__navigation
+  button.react-calendar__navigation__arrow.react-calendar__navigation__prev-button {
+  position: absolute;
+  left: 10px;
+  width: 40px;
+}
+
+.custom-calendar
+  .react-calendar__navigation
+  button.react-calendar__navigation__arrow.react-calendar__navigation__next-button {
+  position: absolute;
+  right: 10px;
+  width: 40px;
+}
+
+/* Dar más espacio al label de mes y año */
+.custom-calendar
+  .react-calendar__navigation
+  button.react-calendar__navigation__label {
+  margin: 0 auto;
+  width: 65%;
+  text-align: center;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 5px;
+}
+
+.custom-calendar .react-calendar__month-view {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+/* Eliminar subrayado de los días de la semana */
+.react-calendar__month-view__weekdays__weekday {
+  font-weight: bold;
+  color: #000;
+  text-decoration: none !important;
+}
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+/* Remover todos los títulos y subrayados */
+.react-calendar abbr[title] {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+/* Opcional: Mejorar la apariencia general */
+.react-calendar {
+  border-radius: 10px; /* Redondear los bordes */
+  border: none; /* Eliminar borde predeterminado */
+}
+
+.react-calendar__navigation button {
+  color: #333; /* Color del texto en los botones */
+  font-weight: bold;
+}
+
+/* Eliminar el cursor pointer y cualquier indicador de título */
+.react-calendar__tile[title] {
+  pointer-events: initial;
+}
+
+.calendar-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.custom-calendar {
+  max-width: 100%;
+  width: 350px;
+}
+
+/* Responsive para móviles */
+@media (max-width: 480px) {
+  .custom-calendar {
+    width: 100%;
+    font-size: 12px;
+  }
+
+  /* Texto más pequeño para el label del mes en dispositivos pequeños */
+  .custom-calendar
+    .react-calendar__navigation
+    button.react-calendar__navigation__label {
+    font-size: 14px;
+    width: 70%;
+  }
+
+  /* Hacer los botones de navegación más pequeños en móviles */
+  .custom-calendar
+    .react-calendar__navigation
+    button.react-calendar__navigation__arrow {
+    width: 30px;
+  }
+}
+
+/* Para pantallas muy pequeñas como iPhone SE */
+@media (max-width: 375px) {
+  .custom-calendar
+    .react-calendar__navigation
+    button.react-calendar__navigation__label {
+    font-size: 12px;
+    width: 60%;
+  }
 }
