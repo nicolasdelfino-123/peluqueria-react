@@ -1,6 +1,13 @@
 import React from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const FormTurno = () => {
+  const navigate = useNavigate();
+
+  const handleSucces = () => {
+    navigate();
+  };
+
   return (
     <div className="container text-start" style={{ maxWidth: "720px" }}>
       <div class="mb-3">
@@ -39,7 +46,10 @@ const FormTurno = () => {
           rows="3"
         ></textarea>
         <div className="d-flex justify-content-center">
-          <button className="btn btn-success px-4 py-2 mt-3">
+          <button
+            className="btn btn-success px-4 py-2 mt-3"
+            onClick={() => handleSucces()}
+          >
             Confirmar Turno
           </button>
         </div>

@@ -182,3 +182,6 @@ input.form-control,
 textarea.form-control {
   border: 1px solid black;
 }
+.seleccionar {
+  font-size: clamp(5px, 2vw, 14px) !important;
+}

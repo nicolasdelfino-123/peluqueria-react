@@ -66,9 +66,13 @@ function TurnosTarde() {
               turnos.map((turno) => (
                 <Col key={turno.hora} xs={6} md={4} lg={3}>
                   <Card className="text-center p-2 shadow-sm">
-                    <Card.Body>
+                    <Card.Body className="d-flex flex-column align-items-center">
                       <h5>{turno.hora}</h5>
-                      <Button variant="success" disabled={!turno.disponible}>
+                      <Button
+                        variant="success"
+                        disabled={!turno.disponible}
+                        className="seleccionar btn-sm w-100 text-nowrap px-3 d-flex justify-content-center align-items-center"
+                      >
                         Seleccionar
                       </Button>
                     </Card.Body>
