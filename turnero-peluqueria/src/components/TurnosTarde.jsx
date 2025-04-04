@@ -14,15 +14,30 @@ function TurnosTarde() {
     if (fechaStr) {
       setFechaSeleccionada(fechaStr);
 
-      // Convertimos la fecha para asegurar formato YYYY-MM-DD
+      // Convertimos la fecha a objeto Date
       const [year, month, day] = fechaStr.split("-").map(Number);
       const fechaObj = new Date(year, month - 1, day);
-      const diaSemana = fechaObj.getDay(); // 6 = Sábado
+      const diaSemana = fechaObj.getDay(); // 2 = Martes, 6 = Sábado
 
       let horarios = [];
 
-      if (diaSemana >= 2 && diaSemana <= 6) {
-        // Martes a Sábado: 17:30 - 20:30
+      if (diaSemana >= 2 && diaSemana <= 5) {
+        // Martes a Viernes: 16:00 - 21:00
+        horarios = [
+          "16:00",
+          "16:30",
+          "17:00",
+          "17:30",
+          "18:00",
+          "18:30",
+          "19:00",
+          "19:30",
+          "20:00",
+          "20:30",
+          "21:00",
+        ];
+      } else if (diaSemana === 6) {
+        // Sábados: 17:30 - 20:30
         horarios = [
           "17:30",
           "18:00",
@@ -48,8 +63,8 @@ function TurnosTarde() {
           <p className="text-center">Fecha seleccionada: {fechaSeleccionada}</p>
           <Row className="g-3">
             {turnos.length > 0 ? (
-              turnos.map((turno, index) => (
-                <Col key={index} xs={6} md={4} lg={3}>
+              turnos.map((turno) => (
+                <Col key={turno.hora} xs={6} md={4} lg={3}>
                   <Card className="text-center p-2 shadow-sm">
                     <Card.Body>
                       <h5>{turno.hora}</h5>

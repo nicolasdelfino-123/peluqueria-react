@@ -52,7 +52,7 @@ function TurnosMañana() {
       setTurnos(horarios.map((hora) => ({ hora, disponible: true })));
     }
   }, [location]);
-
+  console.log("Turnos en el render:", turnos);
   return (
     <Container className="mt-4">
       <Card className="p-3 shadow">
@@ -61,10 +61,11 @@ function TurnosMañana() {
         </Card.Header>
         <Card.Body>
           <p className="text-center">Fecha seleccionada: {fechaSeleccionada}</p>
+
           <Row className="g-3">
             {turnos.length > 0 ? (
-              turnos.map((turno, index) => (
-                <Col key={index} xs={6} md={4} lg={3}>
+              turnos.map((turno) => (
+                <Col key={turno.hora} xs={6} md={4} lg={3}>
                   <Card className="text-center p-2 shadow-sm">
                     <Card.Body>
                       <h5>{turno.hora}</h5>

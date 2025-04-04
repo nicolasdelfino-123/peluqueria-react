@@ -32,7 +32,8 @@ function App() {
             </p>
             <p>
               <i className="fa-regular fa-calendar me-2" /> Martes a Viernes:
-              8:30 - 12:00 | Sábados: 8:30 - 13:00 & 17:30 - 20:30
+              8:30 - 12:00 & 16:00 - 21:00 | Sábados: 8:30 - 13:00 & 17:30 -
+              20:30
             </p>
             <p>
               <i className="fa-brands fa-whatsapp me-2" />
