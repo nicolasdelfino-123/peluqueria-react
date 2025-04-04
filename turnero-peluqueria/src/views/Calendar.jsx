@@ -109,8 +109,8 @@ function Calendar() {
               // Deshabilitar navegación de año completamente
               prev2Label={null}
               next2Label={null}
-              nextLabel="›"
-              prevLabel="‹"
+              nextLabel={<i class="bi bi-caret-right-fill"></i>}
+              prevLabel={<i class="bi bi-caret-left-fill"></i>}
               minDetail="month" // Importante: nunca mostrar la vista de año
               maxDetail="month" // Importante: nunca mostrar la vista de año
             />
