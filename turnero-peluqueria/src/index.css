@@ -177,3 +177,8 @@ img {
     width: 60%;
   }
 }
+
+input.form-control,
+textarea.form-control {
+  border: 1px solid black;
+}

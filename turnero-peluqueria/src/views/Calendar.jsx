@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useTurnos } from "../context/TurnosContext";
-import { Card } from "react-bootstrap";
+import { Card, Dropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function Calendar() {
+  const navigate = useNavigate();
   const [date, setDate] = useState(new Date());
   const { agregarTurno } = useTurnos();
   const [viewMode, setViewMode] = useState("month");
@@ -14,7 +16,6 @@ function Calendar() {
 
   // Eliminar subrayado punteado de los días de la semana
   useEffect(() => {
-    // Eliminar atributos title de los elementos abbr del calendario
     const removeUnderlines = () => {
       const abbrElements = document.querySelectorAll(
         ".react-calendar abbr[title]"
@@ -24,13 +25,9 @@ function Calendar() {
       });
     };
 
-    // Ejecutar después de que el componente se monte y cuando se actualice
     removeUnderlines();
-
-    // También ejecutar después de un breve retraso para asegurar que el DOM esté actualizado
     const timeoutId = setTimeout(removeUnderlines, 100);
 
-    // Asegurarse que el botón central no permite cambio de vista
     const preventViewChange = () => {
       const labelButton = document.querySelector(
         ".react-calendar__navigation__label"
@@ -52,7 +49,6 @@ function Calendar() {
 
   // Prevenir cambio de vista a año
   const onViewChange = ({ view }) => {
-    // Siempre forzar vista de mes
     if (view !== "month") {
       setViewMode("month");
       return false;
@@ -60,13 +56,18 @@ function Calendar() {
     return true;
   };
 
-  const handleReservar = () => {
-    agregarTurno(date);
-    alert(`Turno reservado para el ${date.toLocaleDateString()}`);
+  // Función para redirigir según la selección
+  const handleSelectTurno = (turno) => {
+    const formattedDate = date.toISOString().split("T")[0]; // Formato YYYY-MM-DD
+    if (turno === "mañana") {
+      navigate(`/turnos-manana?fecha=${formattedDate}`);
+    } else if (turno === "tarde") {
+      navigate(`/turnos-tarde?fecha=${formattedDate}`);
+    }
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-4" style={{ maxWidth: "720px" }}>
       <Card className="p-3 shadow">
         <Card.Header className="bg-primary text-white text-center">
           <h2>Selecciona tu turno</h2>
@@ -81,11 +82,6 @@ function Calendar() {
               tileDisabled={disableDays}
               view={viewMode}
               onViewChange={onViewChange}
-              onClickYear={(value, event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                return false;
-              }}
               formatShortWeekday={(locale, date) => {
                 const weekdays = [
                   "Dom",
@@ -94,35 +90,44 @@ function Calendar() {
                   "Mié",
                   "Jue",
                   "Vie",
-                  "Sab",
+                  "Sáb",
                 ];
                 return weekdays[date.getDay()];
               }}
-              formatMonthYear={(locale, date) => {
-                return date
+              formatMonthYear={(locale, date) =>
+                date
                   .toLocaleDateString("es-ES", {
                     month: "long",
                     year: "numeric",
                   })
-                  .replace(" de", "");
-              }}
-              // Deshabilitar navegación de año completamente
+                  .replace(" de", "")
+              }
               prev2Label={null}
               next2Label={null}
-              nextLabel={<i class="bi bi-caret-right-fill"></i>}
-              prevLabel={<i class="bi bi-caret-left-fill"></i>}
-              minDetail="month" // Importante: nunca mostrar la vista de año
-              maxDetail="month" // Importante: nunca mostrar la vista de año
+              nextLabel={<i className="bi bi-caret-right-fill"></i>}
+              prevLabel={<i className="bi bi-caret-left-fill"></i>}
+              minDetail="month"
+              maxDetail="month"
             />
           </div>
           <div className="text-center mt-3">
             <p>Fecha seleccionada: {date.toLocaleDateString()}</p>
-            <button
-              className="btn btn-success px-4 py-2"
-              onClick={handleReservar}
-            >
-              Confirmar Turno
-            </button>
+
+            {/* Dropdown para seleccionar turno */}
+            <Dropdown>
+              <Dropdown.Toggle variant="success" id="dropdown-basic">
+                Selecciona Turno
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={() => handleSelectTurno("mañana")}>
+                  Mañana
+                </Dropdown.Item>
+                <Dropdown.Item onClick={() => handleSelectTurno("tarde")}>
+                  Tarde
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </div>
         </Card.Body>
       </Card>
