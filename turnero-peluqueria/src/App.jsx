@@ -9,12 +9,13 @@ function App() {
   const navigate = useNavigate();
 
   return (
-    <>
-      {/* Contenedor centrado con ancho fijo */}
-      <div
-        className="container d-flex flex-column min-vh-100"
-        style={{ maxWidth: "720px", height: "411.6px" }}
-      >
+    // Contenedor principal que ocupa toda la altura de la ventana
+    <div
+      className="container d-flex flex-column"
+      style={{ height: "95vh", maxWidth: "720px" }}
+    >
+      {/* Contenido principal */}
+      <div className="flex-grow-1 d-flex flex-column">
         {/* Imagen ajustada al ancho del contenedor */}
         <div className="foto-header w-100">
           <img src="pelu.jpg" alt="Peluquería" className="w-100 h-auto" />
@@ -49,6 +50,8 @@ function App() {
           </button>
         </div>
       </div>
+
+      {/* Footer con margen negativo para acercarlo al botón */}
       <footer className="mt-auto bg-light py-3">
         <div className="container d-flex align-items-center justify-content-center whatsapp">
           <span>
@@ -56,7 +59,8 @@ function App() {
           </span>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
+
 export default App;
