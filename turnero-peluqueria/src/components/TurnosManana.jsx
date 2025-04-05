@@ -56,7 +56,7 @@ function TurnosMañana() {
   return (
     <Container className="mt-4">
       <Card className="p-3 shadow">
-        <Card.Header className="bg-success text-white text-center">
+        <Card.Header className="bg-primary text-white text-center">
           <h2>Turnos Mañana</h2>
         </Card.Header>
         <Card.Body>

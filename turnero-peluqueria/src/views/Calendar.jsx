@@ -11,8 +11,14 @@ function Calendar() {
   const { agregarTurno } = useTurnos();
   const [viewMode, setViewMode] = useState("month");
 
-  // Deshabilitar lunes (1) y domingos (0)
-  const disableDays = ({ date }) => date.getDay() === 0 || date.getDay() === 1;
+  const disableDays = ({ date }) => {
+    const today = new Date();
+    return (
+      new Date(date.toDateString()) < new Date(today.toDateString()) || // desactiva fechas pasadas
+      date.getDay() === 0 || // desactiva domingos
+      date.getDay() === 1 // desactiva lunes
+    );
+  };
 
   // Eliminar subrayado punteado de los días de la semana
   useEffect(() => {

@@ -24,6 +24,7 @@ function App() {
           <h1 className="titulo">Ivan Belotti Salón Masculino </h1>
         </div>
         <hr />
+        {/* DIRECCIÓN, HORARIOS, TELÉFONO */}
         <div className="container d-flex ">
           <div className="column info text-start mt-4">
             <p>
