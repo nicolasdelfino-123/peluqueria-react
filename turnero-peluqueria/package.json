@@ -16,6 +16,7 @@
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",
     "react-calendar": "^5.1.0",
+    "react-calendly": "^4.3.1",
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.30.0"
   },

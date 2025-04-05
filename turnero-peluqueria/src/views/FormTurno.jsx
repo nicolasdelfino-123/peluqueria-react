@@ -20,7 +20,7 @@ const FormTurno = () => {
           id="exampleFormControlInput"
           placeholder=""
         />
-        <label for="exampleFormControlInput1" class="form-label py-2 pb-0">
+        <label for="exampleFormControlInput1" class="form-label py-3 pb-0">
           Email
         </label>
         <input
